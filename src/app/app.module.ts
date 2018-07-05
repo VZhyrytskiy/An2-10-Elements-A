@@ -17,6 +17,6 @@ export class AppModule {
     const el = createCustomElement(SimpleComponent, {
       injector: this.injector
     });
-    customElements.define('simple', el);
+    customElements.define('app-simple', el);
   }
 }
