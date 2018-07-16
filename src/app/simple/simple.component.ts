@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -11,6 +18,8 @@ export class SimpleComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('email') emailDefaultValue = '';
 
+  @Output() sendLoginFormValue: EventEmitter<any> = new EventEmitter<any>();
+
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {}
@@ -20,7 +29,7 @@ export class SimpleComponent implements OnInit {
   }
 
   onLogin() {
-    console.log(this.loginForm.value);
+    this.sendLoginFormValue.emit(this.loginForm.value);
   }
 
   private buildLoginForm() {
