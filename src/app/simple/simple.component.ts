@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.Native
 })
 export class SimpleComponent implements OnInit {
+  // tslint:disable-next-line:no-input-rename
+  @Input('email') emailDefaultValue = '';
+
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {}
@@ -22,7 +25,7 @@ export class SimpleComponent implements OnInit {
 
   private buildLoginForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      email: [this.emailDefaultValue, Validators.required],
       password: ['', Validators.required],
       checkMe: false
     });
