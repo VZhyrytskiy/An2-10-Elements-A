@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-simple',
@@ -7,10 +8,23 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.Native
 })
 export class SimpleComponent implements OnInit {
+  loginForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.buildLoginForm();
   }
 
+  onLogin() {
+    console.log(this.loginForm.value);
+  }
+
+  private buildLoginForm() {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      checkMe: false
+    });
+  }
 }

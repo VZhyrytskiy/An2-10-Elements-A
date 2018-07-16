@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { createCustomElement } from '@angular/elements';
 
 import { SimpleComponent } from './simple/simple.component';
 
 @NgModule({
   declarations: [SimpleComponent],
-  imports: [BrowserModule],
+  imports: [BrowserModule, ReactiveFormsModule],
   providers: [],
   entryComponents: [SimpleComponent]
 })
