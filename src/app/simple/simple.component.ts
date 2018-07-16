@@ -4,7 +4,10 @@ import {
   ViewEncapsulation,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  ElementRef,
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -20,12 +23,25 @@ export class SimpleComponent implements OnInit {
 
   @Output() sendLoginFormValue: EventEmitter<any> = new EventEmitter<any>();
 
+  @HostBinding('attr.selected') isSelected = true;
+
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private el: ElementRef) {
+    console.log(this.el.nativeElement);
+  }
 
   ngOnInit() {
     this.buildLoginForm();
+  }
+
+  @HostListener('click', ['$event'])
+  onHostClick(event) {
+    console.log(
+      'Click on Host Element. IsSelected (attr.selected): ',
+      this.isSelected
+    );
+    console.log('Click on Host Element. $event: ', event);
   }
 
   onLogin() {
