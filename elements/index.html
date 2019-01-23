@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Elements </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <app-simple id="simple"></app-simple>
+    <script src="simple.js"></script>
+    <script>
+      const elem = document.getElementById('simple');
+      elem.addEventListener('sendLoginFormValue', function(event) {
+          console.log(event.detail);
+      });
+</script>
+
+</body>
+</html>
