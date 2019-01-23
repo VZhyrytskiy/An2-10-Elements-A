@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector } from '@angular/core';
+import { NgModule, DoBootstrap, Injector } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { createCustomElement } from '@angular/elements';
 
@@ -11,7 +11,7 @@ import { SimpleComponent } from './simple/simple.component';
   providers: [],
   entryComponents: [SimpleComponent]
 })
-export class AppModule {
+export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
