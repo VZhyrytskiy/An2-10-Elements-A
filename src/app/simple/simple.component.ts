@@ -15,7 +15,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'app-simple',
   templateUrl: './simple.component.html',
   styleUrls: ['./simple.component.css'],
-  encapsulation: ViewEncapsulation.Native
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class SimpleComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
