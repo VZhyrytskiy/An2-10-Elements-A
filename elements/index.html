@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angular Elements </title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<html>
+  <head>
+    <title>My WebPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
 <body>
-    <app-simple id="simple" email="v.zhiritskiy@gmail.com">
-      <h1>Login Form</h1>
-    </app-simple>
-    <script src="simple.js"></script>
-    <script>
-      const elem = document.getElementById('simple');
-      elem.addEventListener('sendLoginFormValue', function(event) {
-          console.log(event.detail);
-      });
-    </script>
+  <app-accordion icon="plus">
+    <span slot="header">A serious header</span>
+    <span slot="details">With some crucial details</span>
+  </app-accordion>
+  <app-accordion icon="plus">
+    <span slot="header">One more header</span>
+    <span slot="details">I ❤️  web</span>
+  </app-accordion>
+  <script src="simple.js"></script>
 </body>
 </html>

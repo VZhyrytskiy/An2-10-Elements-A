@@ -12,19 +12,10 @@ import { SimpleComponent } from './simple/simple.component';
   entryComponents: [SimpleComponent]
 })
 export class AppModule implements DoBootstrap {
-  constructor(private injector: Injector) {}
-
-  ngDoBootstrap() {
-    const el = createCustomElement(SimpleComponent, {
-      injector: this.injector
-    });
-    customElements.define('app-simple', el);
-
-    // This component exists in the global register of custom elements
-    // We get function.
-    console.log(customElements.get('app-simple'));
-    // This component doesn't exist in the global register of custom elements.
-    // We get undefined.
-    console.log(customElements.get('app-root'));
+  constructor(injector: Injector) {
+    const el = createCustomElement(SimpleComponent, { injector });
+    customElements.define('app-accordion', el);
   }
+
+  ngDoBootstrap() {}
 }

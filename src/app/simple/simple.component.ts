@@ -1,15 +1,10 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   Input,
-  Output,
-  EventEmitter,
-  ElementRef,
-  HostBinding,
-  HostListener
+  ViewChild,
+  ElementRef
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-simple',
@@ -17,42 +12,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./simple.component.css'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class SimpleComponent implements OnInit {
-  // tslint:disable-next-line:no-input-rename
-  @Input('email') emailDefaultValue = '';
+export class SimpleComponent {
+  @Input() icon = 'arrow';
 
-  @Output() sendLoginFormValue: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('el', { read: ElementRef }) el: ElementRef;
 
-  @HostBinding('attr.selected') isSelected = true;
-
-  loginForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private el: ElementRef) {
-    console.log(this.el.nativeElement);
-  }
-
-  ngOnInit() {
-    this.buildLoginForm();
-  }
-
-  @HostListener('click', ['$event'])
-  onHostClick(event) {
-    console.log(
-      'Click on Host Element. IsSelected (attr.selected): ',
-      this.isSelected
-    );
-    console.log('Click on Host Element. $event: ', event);
-  }
-
-  onLogin() {
-    this.sendLoginFormValue.emit(this.loginForm.value);
-  }
-
-  private buildLoginForm() {
-    this.loginForm = this.fb.group({
-      email: [this.emailDefaultValue, Validators.required],
-      password: ['', Validators.required],
-      checkMe: false
-    });
+  toggleHelper() {
+    this.el.nativeElement.classList.toggle('active');
+    const panel = this.el.nativeElement.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = `${panel.scrollHeight}px`;
+    }
   }
 }
